@@ -11,7 +11,7 @@
 #define F_PLUS 2
 #define F_ZERO 4
 #define F_HASH 8
-#define F_SPACE 1
+#define F_SPACE 16
 /*Sizes*/
 #define S_LONG 2
 #define S_SHORT 1
@@ -59,6 +59,12 @@ int print_binary(va_list types, char buffer[],
 int print_unsigned(va_list types, char buffer[],
 		int flags, int width, int precision,
 		int size);
+int print_octal(va_list types, char buffer[],
+		int flags, int width, int precision,
+		int size);
+int print_reverse(va_list types, char buffer[],
+		int flags, int width, int precision,
+		int size);
 int print_hexadecimal(va_list types, char buffer[],
 		int flags, int width, int precision,
 		int size);
@@ -70,6 +76,9 @@ int print_hexa(va_list types, char map_to[],
 		int width, int precision, int size);
 
 /*FUNCTION TO PRINT NON PRINTABLE CHARACTER*/
+int print_non_printable(va_list types, char buffer[],
+		int flags, int width, int precision,
+		int size);
 int print_pointer(va_list types, char buffer[], int flags,
 		int width, int precision, int size);
 /*FUNCTION TO HANDLE OTHER SPECIFIERS*/
@@ -81,6 +90,10 @@ int get_size(const char *format, int *i);
 /*FUNCTION TO PRINT A STRING IN ROT13*/
 int print_rot13string(va_list types, char buffer[], int flags,
 		int width, int precision, int size);
+int handle_write_char(char c, char buffer[], int flags, int width,
+		int precision, int size);
+int write_number(int is_positive, int ind, char buffer[],
+		int flags, int width, int precision, int size);
 int write_num(int ind, char bff[], int flags, int width,
 		int precision, int length, char padd, char extra_c);
 int write_pointer(char buffer[], int ind, int length, int width,
